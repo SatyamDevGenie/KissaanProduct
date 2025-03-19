@@ -4,9 +4,9 @@ import chalk from "chalk";
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
-        console.log(chalk.white(`MongoDB Connected: ${conn.connection.host}`));
+        console.log(chalk.cyanBright(`MongoDB Connected: ${conn.connection.host}`));
     } catch (err) {
-        console.error(chalk.red(`Error: ${err.message}`));
+        console.error(chalk.redBright(`Error: ${err.message}`));
         process.exit(1);
     }
 };

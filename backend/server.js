@@ -4,6 +4,7 @@ import chalk from "chalk";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import cookieParser from "cookie-parser";
+import {notFound, errorHandler} from "./middlewares/errorMiddleware.js"
 
 
 dotenv.config(); // For Env
@@ -21,6 +22,11 @@ app.get("/", (req, res) => {
 });
 
 
+// Error Middlewares
+app.use(notFound);
+app.use(errorHandler);
+
+
 
 // ENV Setup
 const PORT = process.env.PORT || 5000;
@@ -28,5 +34,5 @@ const PORT = process.env.PORT || 5000;
 
 
 app.listen(PORT, () => {
-    console.log(chalk.yellow(`Server running in ${process.env.NODE_ENV} mode on PORT ${PORT}`));
+    console.log(chalk.yellowBright(`Server running in ${process.env.NODE_ENV} mode on PORT ${PORT}`));
 });
